@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Integrador — Secuencia Didáctica con IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Archivo:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --ink-soft: #3d3d56;
+      --paper: #f4f1ea;
+      --paper-card: #fbf9f4;
+      --accent: #5b4ad4;
+      --accent-soft: #ede9fc;
+      --accent-deep: #2e2466;
+      --coral: #d8542f;
+      --teal: #0f6e56;
+      --gold: #ba7517;
+      --line: rgba(26, 26, 46, 0.12);
+      --shadow: 0 2px 20px rgba(46, 36, 102, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(46, 36, 102, 0.04) 1px, transparent 0);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 60px;
+      position: relative;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--ink-soft);
+      max-width: 600px;
+      font-weight: 300;
+      margin-bottom: 56px;
+    }
+
+    .meta-card {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px 40px;
+      box-shadow: var(--shadow);
+      max-width: 640px;
+    }
+
+    .meta-card h2 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+
+    .meta-row:first-of-type {
+      border-top: none;
+    }
+
+    .meta-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+
+    .meta-value {
+      font-size: 0.98rem;
+      color: var(--ink);
+    }
+
+    .fill-field {
+      display: inline-block;
+      min-width: 220px;
+      border-bottom: 2px dotted var(--accent);
+      color: var(--accent);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    /* ---- SECTIONS ---- */
+    section {
+      padding: 70px 0;
+      position: relative;
+    }
+
+    .section-num {
+      font-family: 'Fraunces', serif;
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 32px;
+      color: var(--ink);
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 40px;
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: var(--ink-soft);
+    }
+
+    p strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      color: var(--ink);
+      font-weight: 300;
+    }
+
+    /* Card grid */
+    .card {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 30px 34px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--accent-deep);
+    }
+
+    .card.accent {
+      border-left: 4px solid var(--accent);
+    }
+
+    .card.coral {
+      border-left: 4px solid var(--coral);
+    }
+
+    .card.teal {
+      border-left: 4px solid var(--teal);
+    }
+
+    .card.gold {
+      border-left: 4px solid var(--gold);
+    }
+
+    .obj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 680px) {
+      .obj-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .obj-card {
+      background: var(--accent-soft);
+      border-radius: 16px;
+      padding: 28px 30px;
+      border: 1px solid rgba(91, 74, 212, 0.15);
+    }
+
+    .obj-card .obj-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .obj-card p {
+      color: var(--accent-deep);
+      margin-bottom: 0;
+      font-size: 1.02rem;
+    }
+
+    /* Profile chips */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .chip {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+
+    .chip span {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ---- BLOOM TABLE ---- */
+    .bloom-wrap {
+      margin: 30px 0;
+    }
+
+    .bloom-row {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .bloom-row:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 24px rgba(46, 36, 102, 0.12);
+    }
+
+    .bloom-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 26px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .bloom-level {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 40px;
+    }
+
+    .bloom-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      flex: 1;
+      color: var(--ink);
+    }
+
+    .bloom-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 5px 14px;
+      border-radius: 100px;
+      text-transform: uppercase;
+    }
+
+    .badge-no {
+      background: #e6f2ed;
+      color: var(--teal);
+    }
+
+    .badge-si {
+      background: #f9ece4;
+      color: var(--coral);
+    }
+
+    .bloom-toggle {
+      font-size: 1.4rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+
+    .bloom-row.open .bloom-toggle {
+      transform: rotate(45deg);
+    }
+
+    .bloom-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .bloom-row.open .bloom-body {
+      max-height: 600px;
+    }
+
+    .bloom-content {
+      padding: 0 26px 26px 82px;
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .bloom-content {
+        padding-left: 26px;
+      }
+    }
+
+    .bloom-field {}
+
+    .bloom-field .fl {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .bloom-field p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+
+    /* Filter list */
+    .filter-list {
+      display: grid;
+      gap: 14px;
+      margin: 28px 0;
+      counter-reset: filter;
+    }
+
+    .filter-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px 26px;
+    }
+
+    .filter-item::before {
+      counter-increment: filter;
+      content: counter(filter);
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      background: var(--accent);
+      min-width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .filter-item .fq {
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .filter-item .fa {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    /* Resources */
+    .res-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    @media (max-width: 680px) {
+      .res-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .res-card {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 26px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .res-card .res-icon {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .res-card h4 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .res-card p {
+      font-size: 0.88rem;
+      margin-bottom: 0;
+    }
+
+    .link-box {
+      background: var(--accent-soft);
+      border: 2px dashed var(--accent);
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    .link-box .lb-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .link-box p {
+      color: var(--accent-deep);
+      margin-bottom: 0;
+    }
+
+    /* Ethics callout */
+    .ethics {
+      background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+      color: #fff;
+      border-radius: 20px;
+      padding: 40px 44px;
+      margin: 28px 0;
+    }
+
+    .ethics h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .ethics p {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .ethics p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ethics strong {
+      color: #fff;
+    }
+
+    /* Reflection */
+    .reflect-block {
+      margin-bottom: 40px;
+    }
+
+    .reflect-q {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--accent-deep);
+      margin-bottom: 18px;
+      line-height: 1.3;
+      padding-left: 24px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .pullquote {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.35;
+      color: var(--accent-deep);
+      text-align: center;
+      padding: 50px 30px;
+      margin: 50px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 60px 0 50px;
+      margin-top: 40px;
+    }
+
+    footer .wrap {
+      text-align: center;
+    }
+
+    footer .foot-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+
+    footer p {
+      color: rgba(244, 241, 234, 0.7);
+      margin-bottom: 8px;
+    }
+
+    footer .foot-meta {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Rubric mapping */
+    .rubric-map {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .rubric-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 22px;
+    }
+
+    .rubric-pct {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--accent);
+      min-width: 56px;
+    }
+
+    .rubric-item p {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-tag reveal">Proyecto Integrador · Etapa Final</div>
+      <h1 class="reveal">Diseñar para<br>pensar, no para<br><em>delegar</em></h1>
+      <p class="hero-sub reveal">Una secuencia didáctica con inteligencia artificial para Fundamentos del Diseño, donde
+        la IA valida el aprendizaje en lugar de sustituirlo.</p>
+
+      <div class="meta-card reveal">
+        <h2>Datos de la entrega</h2>
+        <div class="meta-row">
+          <span class="meta-label">Taller</span>
+          <span class="meta-value">Cómo diseñar clases efectivas con IA educativa (05-2026)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Docente</span>
+          <span class="meta-value">Allen Kevin Zapien Zamora</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Asignatura</span>
+          <span class="meta-value">Fundamentos del Diseño</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Programa</span>
+          <span class="meta-value">Licenciatura en Diseño Gráfico · 1.er semestre</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. TEMA Y CONTEXTO -->
+  <section>
+    <div class="wrap">
+      <span class="section-num reveal">01</span>
+      <h2 class="section-title reveal">Tema y contexto educativo</h2>
+      <div class="section-divider reveal"></div>
+
+      <p class="lead reveal"><strong>Tema:</strong> Principios del diseño centrado en el usuario, síntesis visual y
+        abstracción conceptual, a partir de la lectura del libro <em>La Fábula del Diseñador Centrado en el Usuario</em>
+        de David Travis.</p>
+
+      <p class="reveal">La actividad funciona como primera tarea del curso y conecta tres competencias fundacionales: la
+        comprensión lectora aplicada al diseño, la capacidad de sintetizar información de forma visual, y el dominio de
+        la abstracción en distintos niveles.</p>
+
+      <div class="card accent reveal">
+        <h3>Perfil de los estudiantes</h3>
+        <p>Grupo pequeño de menos de 20 estudiantes de primer semestre de Diseño Gráfico. Es su primera actividad en la
+          carrera, por lo que aún están formando sus hábitos de estudio y su criterio profesional. Nativos digitales con
+          acceso natural a herramientas de IA generativa, lo que representa tanto una oportunidad como un riesgo
+          pedagógico que esta secuencia aborda de forma directa.</p>
+        <div class="chips">
+          <div class="chip"><span>—</span> Menos de 20 alumnos</div>
+          <div class="chip"><span>—</span> Primer semestre</div>
+          <div class="chip"><span>—</span> Primera actividad del curso</div>
+          <div class="chip"><span>—</span> Acceso a ChatGPT, Claude y Gemini</div>
+        </div>
+      </div>
+
+      <div class="card coral reveal">
+        <h3>El desafío que origina el diseño</h3>
+        <p>Con la llegada de la IA generativa, muchos estudiantes dejaron de leer y delegaban el informe de lectura a la
+          IA. La respuesta inicial fue pedir el informe como infografía; sin embargo, la IA ya genera infografías. Por
+          eso se sumó el ejercicio de abstracción. El reto real: <strong>que el alumno aprenda a usar IA sin dejar de
+            leer, sintetizar, diseñar y abstraer.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. OBJETIVOS -->
+  <section>
+    <div class="wrap">
+      <span class="section-num reveal">02</span>
+      <h2 class="section-title reveal">Objetivos de aprendizaje</h2>
+      <div class="section-divider reveal"></div>
+
+      <div class="obj-grid">
+        <div class="obj-card reveal">
+          <div class="obj-tag">Objetivo 1 · Comprensión y síntesis</div>
+          <p>Comprender y sintetizar los principios del diseño centrado en el usuario a partir de la lectura completa
+            del libro, representándolos visualmente mediante una infografía de autoría propia.</p>
+        </div>
+        <div class="obj-card reveal">
+          <div class="obj-tag">Objetivo 2 · Abstracción</div>
+          <p>Aplicar el principio de abstracción representando un concepto central de la lectura en tres niveles
+            progresivos: realista, figurativo y no figurativo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ACTIVIDAD FORMATIVA -->
+  <section>
+    <div class="wrap">
+      <span class="section-num reveal">03</span>
+      <h2 class="section-title reveal">Actividad formativa</h2>
+      <div class="section-divider reveal"></div>
+
+      <p class="lead reveal">Informe de lectura en formato infografía + ejercicio de abstracción, estructurado en tres
+        fases que protegen el pensamiento del estudiante e integran la IA solo donde aporta valor real.</p>
+
+      <div class="card teal reveal">
+        <h3>Fase 1 · Lectura y síntesis (sin IA)</h3>
+        <p>El estudiante lee el libro completo, identifica personalmente 5–7 conceptos clave, elabora borradores de su
+          síntesis y diseña manualmente su infografía aplicando jerarquía visual.</p>
+      </div>
+      <div class="card accent reveal">
+        <h3>Fase 2 · Validación de comprensión (con IA)</h3>
+        <p>Solo después de completar su síntesis, el estudiante usa IA como validadora: confirma si sus conceptos clave
+          son correctos, enriquece su perspectiva sobre aplicaciones al diseño, y revisa la claridad de su jerarquía
+          visual. La IA sugiere; el estudiante decide.</p>
+      </div>
+      <div class="card teal reveal">
+        <h3>Fase 3 · Abstracción visual (sin IA)</h3>
+        <p>El estudiante elige un concepto central y crea tres láminas dibujadas por él: realista, figurativa y no
+          figurativa. Cierra con una conclusión reflexiva y una breve declaración de cómo usó la IA en el proceso.</p>
+      </div>
+
+      <h3 style="font-family:'Fraunces',serif;font-size:1.5rem;margin:48px 0 8px;color:var(--accent-deep);"
+        class="reveal">Mapeo a la Taxonomía de Bloom</h3>
+      <p class="reveal">La actividad alcanza el nivel superior (Crear) y recorre los seis niveles cognitivos. Cada nivel
+        declara explícitamente si integra IA y qué proceso es irrenunciable del estudiante. <em>Toca cada nivel para ver
+          el detalle.</em></p>
+
+      <div class="bloom-wrap">
+        <div class="bloom-row reveal">
+          <div class="bloom-head">
+            <span class="bloom-level">1</span>
+            <span class="bloom-name">Recordar</span>
+            <span class="bloom-badge badge-no">Sin IA</span>
+            <span class="bloom-toggle">+</span>
+          </div>
+          <div class="bloom-body">
+            <div class="bloom-content">
+              <div class="bloom-field"><span class="fl">Actividad</span>
+                <p>Leer el libro e identificar conceptos específicos del texto: puntos clave, definiciones y casos
+                  mencionados.</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Irrenunciable del estudiante</span>
+                <p>La lectura completa del libro. Debe leer para reconocer e identificar los conceptos en su propio
+                  contexto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloom-row reveal">
+          <div class="bloom-head">
+            <span class="bloom-level">2</span>
+            <span class="bloom-name">Comprender</span>
+            <span class="bloom-badge badge-no">Sin IA</span>
+            <span class="bloom-toggle">+</span>
+          </div>
+          <div class="bloom-body">
+            <div class="bloom-content">
+              <div class="bloom-field"><span class="fl">Actividad</span>
+                <p>Elaborar una síntesis personal: seleccionar 5–7 conceptos clave y explicarlos con sus propias
+                  palabras.</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Irrenunciable del estudiante</span>
+                <p>Decidir cuáles son los conceptos clave y explicarlos. Debe demostrar que entiende, no que copia
+                  definiciones.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloom-row reveal">
+          <div class="bloom-head">
+            <span class="bloom-level">3</span>
+            <span class="bloom-name">Aplicar</span>
+            <span class="bloom-badge badge-no">Sin IA</span>
+            <span class="bloom-toggle">+</span>
+          </div>
+          <div class="bloom-body">
+            <div class="bloom-content">
+              <div class="bloom-field"><span class="fl">Actividad</span>
+                <p>Diseñar una infografía que comunique los conceptos clave usando jerarquía visual, tipografía y
+                  estructura.</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Irrenunciable del estudiante</span>
+                <p>Crear la infografía manualmente, aplicando principios de diseño en su propia composición.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloom-row reveal">
+          <div class="bloom-head">
+            <span class="bloom-level">4</span>
+            <span class="bloom-name">Analizar</span>
+            <span class="bloom-badge badge-no">Sin IA</span>
+            <span class="bloom-toggle">+</span>
+          </div>
+          <div class="bloom-body">
+            <div class="bloom-content">
+              <div class="bloom-field"><span class="fl">Actividad</span>
+                <p>Elegir un concepto central y analizar cómo se relaciona con los demás conceptos del libro.</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Irrenunciable del estudiante</span>
+                <p>Identificar relaciones entre conceptos y justificar por qué ese concepto es central.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloom-row reveal">
+          <div class="bloom-head">
+            <span class="bloom-level">5</span>
+            <span class="bloom-name">Evaluar</span>
+            <span class="bloom-badge badge-si">Con IA</span>
+            <span class="bloom-toggle">+</span>
+          </div>
+          <div class="bloom-body">
+            <div class="bloom-content">
+              <div class="bloom-field"><span class="fl">Actividad</span>
+                <p>Con apoyo de IA, validar que la síntesis es correcta, revisar la jerarquía de la infografía y evaluar
+                  la coherencia de la conclusión.</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Para qué se usa la IA</span>
+                <p>Como validadora crítica: "¿estos son los conceptos principales?", "¿mi infografía comunica con
+                  claridad?".</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Irrenunciable del estudiante</span>
+                <p>Tomar decisiones a partir de la retroalimentación. La IA sugiere; el estudiante valora y decide.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloom-row reveal">
+          <div class="bloom-head">
+            <span class="bloom-level">6</span>
+            <span class="bloom-name">Crear</span>
+            <span class="bloom-badge badge-no">Sin IA</span>
+            <span class="bloom-toggle">+</span>
+          </div>
+          <div class="bloom-body">
+            <div class="bloom-content">
+              <div class="bloom-field"><span class="fl">Actividad</span>
+                <p>Diseñar tres láminas de abstracción progresiva (realista, figurativa, no figurativa) y redactar la
+                  conclusión reflexiva.</p>
+              </div>
+              <div class="bloom-field"><span class="fl">Irrenunciable del estudiante</span>
+                <p>Dibujar las tres láminas (no generadas por IA) y crear la transformación que demuestra comprensión
+                  profunda.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Fraunces',serif;font-size:1.5rem;margin:48px 0 8px;color:var(--accent-deep);"
+        class="reveal">El filtro pedagógico que guió las decisiones</h3>
+      <p class="reveal">Cada decisión de integración de IA pasó por seis preguntas del filtro pedagógico trabajado en el
+        taller:</p>
+
+      <div class="filter-list">
+        <div class="filter-item reveal">
+          <div><span class="fq">¿Qué objetivo de aprendizaje quiero lograr?</span><span class="fa">Comprensión del
+              diseño centrado en el usuario, síntesis visual y abstracción.</span></div>
+        </div>
+        <div class="filter-item reveal">
+          <div><span class="fq">¿Qué debe pensar el estudiante sin IA?</span><span class="fa">Leer, decidir los
+              conceptos clave, diseñar y dibujar.</span></div>
+        </div>
+        <div class="filter-item reveal">
+          <div><span class="fq">¿En qué momento la IA aporta valor real?</span><span class="fa">Después de sintetizar,
+              como validadora de comprensión.</span></div>
+        </div>
+        <div class="filter-item reveal">
+          <div><span class="fq">¿Qué evidencia mostrará que hubo aprendizaje?</span><span class="fa">Infografía
+              coherente, láminas con abstracción clara y conclusión reflexiva.</span></div>
+        </div>
+        <div class="filter-item reveal">
+          <div><span class="fq">¿Qué criterios éticos debo considerar?</span><span class="fa">Transparencia: declarar
+              cuándo y cómo se usó la IA.</span></div>
+        </div>
+        <div class="filter-item reveal">
+          <div><span class="fq">¿Cómo acompañaré y retroalimentaré?</span><span class="fa">Checkpoints de lectura,
+              rúbrica clara y feedback centrado en el razonamiento.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. RECURSOS CON IA -->
+  <section>
+    <div class="wrap">
+      <span class="section-num reveal">04</span>
+      <h2 class="section-title reveal">Recursos generados con IA</h2>
+      <div class="section-divider reveal"></div>
+
+      <p class="lead reveal">Durante el rediseño se generaron cuatro recursos de apoyo con asistencia de IA, cada uno
+        evaluado desde su pertinencia pedagógica antes de incorporarse.</p>
+
+      <div class="res-grid">
+        <div class="res-card reveal">
+          <div class="res-icon">◆</div>
+          <h4>Propuesta de rediseño con filtro pedagógico</h4>
+          <p>Documento que aplica las seis preguntas del filtro y reestructura la actividad en tres fases.</p>
+        </div>
+        <div class="res-card reveal">
+          <div class="res-icon">◆</div>
+          <h4>Guía práctica para estudiantes</h4>
+          <p>Ejemplos concretos de uso correcto e incorrecto de IA, con prompts de validación modelo.</p>
+        </div>
+        <div class="res-card reveal">
+          <div class="res-icon">◆</div>
+          <h4>Cheat sheet para el docente</h4>
+          <p>Indicadores para distinguir trabajo auténtico de contenido generado por IA.</p>
+        </div>
+        <div class="res-card reveal">
+          <div class="res-icon">◆</div>
+          <h4>Infografías de apoyo</h4>
+          <p>Visualización del filtro pedagógico aplicado y del mapeo a la Taxonomía de Bloom.</p>
+        </div>
+      </div>
+
+      <div class="ethics reveal">
+        <h3>Evaluación ética de los recursos · Transparencia</h3>
+        <p>El criterio ético rector de esta secuencia es la <strong>transparencia</strong>. Tanto el docente como los
+          estudiantes declaran de forma explícita cuándo y cómo se usó la inteligencia artificial.</p>
+        <p>Los estudiantes deben incluir una sección de reflexión que responda: <em>¿Cómo usé la IA? ¿Qué preguntas le
+            hice? ¿Cómo influyó en mi comprensión?</em> Esto convierte el uso de IA en un acto consciente y declarado,
+          no en un atajo oculto, y modela la honestidad académica que se espera de un profesional del diseño.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULLQUOTE -->
+  <div class="wrap">
+    <blockquote class="pullquote reveal">"El filtro pedagógico no es una barrera contra la IA, sino una brújula para
+      usarla con propósito."</blockquote>
+  </div>
+
+  <!-- 5. REFLEXIÓN FINAL -->
+  <section>
+    <div class="wrap">
+      <span class="section-num reveal">05</span>
+      <h2 class="section-title reveal">Reflexión final</h2>
+      <div class="section-divider reveal"></div>
+
+      <div class="reflect-block">
+        <p class="reflect-q reveal">¿Cómo influyó la inteligencia artificial en mis decisiones de planificación y
+          diseño?</p>
+        <p class="reveal">La IA influyó en dos sentidos concretos. Primero, <strong>me ayudó a ver riesgos que no había
+            considerado</strong>: al analizar la actividad junto a la IA, se hizo evidente que mis estudiantes podían
+          delegar por completo la lectura, e incluso la generación de la infografía que yo había pensado como
+          salvaguarda. Ese diagnóstico cambió mi punto de partida. Segundo, <strong>me dio una estructura y un marco
+            para decidir dónde sí y dónde no usar IA</strong>. En lugar de tomar decisiones por intuición, el filtro
+          pedagógico me permitió justificar cada elección: por qué la lectura es irrenunciable, por qué la validación es
+          el único momento donde la IA suma, y por qué la abstracción debe seguir siendo un acto manual del estudiante.
+        </p>
+      </div>
+
+      <div class="reflect-block">
+        <p class="reflect-q reveal">¿Qué aprendizajes considero más significativos para mi práctica docente?</p>
+        <p class="reveal">El aprendizaje más transformador fue entender que <strong>la IA debe validar, no sustituir el
+            pensamiento</strong>. Esta distinción reordena por completo el diseño de una actividad: la pregunta deja de
+          ser "¿cómo evito que usen IA?" y pasa a ser "¿en qué momento la IA fortalece el pensamiento que ya hizo el
+          estudiante?".</p>
+        <p class="reveal">Junto a ello, identifico tres aprendizajes que ya forman parte de mi práctica: <strong>el
+            filtro pedagógico como herramienta de decisión</strong>, que me da un método replicable para cualquier
+          actividad futura; <strong>la protección de los procesos cognitivos irrenunciables</strong>, apoyándome en la
+          Taxonomía de Bloom para reconocer qué niveles —analizar, crear— no puedo permitir que se externalicen sin
+          vaciar la actividad de aprendizaje; y <strong>la importancia de la transparencia y la ética con los
+            alumnos</strong>, entendiendo que enseñar a declarar el uso de IA forma criterio profesional, no solo cumple
+          una norma.</p>
+      </div>
+
+      <div class="reflect-block">
+        <p class="reflect-q reveal">¿De qué manera integraré la IA en futuras clases de forma consciente y responsable?
+        </p>
+        <p class="reveal">Mi línea de acción principal es <strong>enseñar a mis alumnos a usar la IA como
+            validadora</strong>. No basta con que yo diseñe bien la secuencia; necesito que ellos interioricen el mismo
+          criterio. Eso implica modelar en clase cómo se formula una buena pregunta de validación a la IA después de
+          haber pensado por cuenta propia, mostrar ejemplos de uso que fortalece frente a uso que sustituye, y
+          normalizar que la IA es un espejo crítico del trabajo, no su autor.</p>
+        <p class="reveal">En un grupo pequeño de primer semestre, esta es además una oportunidad temprana: si en su
+          primera actividad de la carrera los estudiantes aprenden que la herramienta sirve para afilar el pensamiento y
+          no para evitarlo, ese criterio los acompañará durante toda su formación como diseñadores.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-title">Proyecto Integrador · Etapa Final</div>
+      <p>Taller: Cómo diseñar clases efectivas con IA educativa · 05-2026</p>
+      <p class="foot-meta">Fundamentos del Diseño — Licenciatura en Diseño Gráfico</p>
+    </div>
+  </footer>
+
+  <script>
+    // Acordeón Bloom
+    document.querySelectorAll('.bloom-head').forEach(head => {
+      head.addEventListener('click', () => {
+        head.parentElement.classList.toggle('open');
+      });
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4 * 0.06) + 's';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+
+</html>
