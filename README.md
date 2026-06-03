@@ -50,13 +50,8 @@ xdg-open Proyecto_Integrador_Secuencia_Didactica_IA.html
 ```
 .
 ├── README.md                                          # Este archivo
-├── Proyecto_Integrador_Secuencia_Didactica_IA.html  # Entregable principal
-├── RECURSOS_COMPLEMENTARIOS/
-│   ├── Propuesta_Mejora_Actividad_Filtro_Pedagogico.docx
-│   ├── Guia_Practica_Uso_Responsable_IA.docx
-│   ├── Cheat_Sheet_Deteccion_Autentico_vs_AI.docx
-│   ├── Hoja_de_Trabajo_Completada.docx
-│   └── Resumen_Ejecutivo_Una_Pagina.docx
+├── index.html  # Entregable principal
+├── evaluaciones_asistidas_por_IA.html               # Evaluaciones asistidas por IA
 └── .gitignore
 ```
 
