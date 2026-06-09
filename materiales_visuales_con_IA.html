@@ -1033,8 +1033,10 @@
       <div class="section-divider reveal"></div>
 
       <p class="lead reveal">Para cerrar este objeto de aprendizaje, responde las siguientes cinco preguntas. Están
-        diseñadas para comprobar que comprendiste los conceptos centrales trabajados en los tres recursos anteriores.
-        Selecciona la opción que consideres correcta en cada pregunta.</p>
+        diseñadas para comparar tus respuestas con las mías y verificar la comprensión de los conceptos centrales
+        trabajados en los tres recursos anteriores.
+        Selecciona la opción que consideres correcta en cada pregunta y al final te diré si tus respuestas coinciden con
+        las mías junto con una breve explicación de cada una.</p>
 
       <div class="quiz-wrap reveal" id="quizContainer">
 
@@ -1388,17 +1390,17 @@
 
       if (score >= 4) {
         result.className = 'quiz-result show pass';
-        titleEl.textContent = '¡Excelente comprensión!';
-        msgEl.textContent = 'Has demostrado una comprensión sólida de los conceptos trabajados en este objeto de aprendizaje. Los principios del diseño centrado en el usuario y el uso crítico de la IA como herramienta de apoyo han quedado claros.';
+        titleEl.textContent = '¡Excelente!';
+        msgEl.textContent = '¡Felicidades! Has coincidido con todas mis respuestas.';
       } else if (score >= 3) {
         result.className = 'quiz-result show pass';
-        titleEl.textContent = 'Buena comprensión';
-        msgEl.textContent = 'Comprendes la mayoría de los conceptos, pero vale la pena revisar los recursos donde tuviste dificultad para afianzar las ideas clave.';
+        titleEl.textContent = '¡Bien!';
+        msgEl.textContent = 'Has coincidido con la mayoría de mis respuestas.';
         retryBtn.style.display = 'inline-flex';
       } else {
         result.className = 'quiz-result show fail';
-        titleEl.textContent = 'Conviene repasar';
-        msgEl.textContent = 'Te recomiendo volver a revisar los tres recursos de este objeto de aprendizaje. Enfócate en la relación entre el criterio humano y la IA, y en los principios del diseño centrado en el usuario.';
+        titleEl.textContent = 'Podemos mejorar juntos';
+        msgEl.textContent = 'Parece que no coincidimos en todas. Te recomiendo volver a revisar los recursos de este objeto de aprendizaje.';
         retryBtn.style.display = 'inline-flex';
       }
 
