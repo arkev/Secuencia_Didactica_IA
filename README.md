@@ -6,11 +6,11 @@
 
 Este repositorio contiene el **entregable final del Proyecto Integrador** del taller *"Cómo diseñar clases efectivas con IA educativa" (05-2026)* de la Universidad de Montemorelos.
 
-El proyecto presenta una **secuencia didáctica rediseñada** para la materia **Fundamentos del Diseño** (1.er semestre, Licenciatura en Diseño Gráfico), integrando inteligencia artificial de forma reflexiva y ética como herramienta de validación del pensamiento estudiantil.
+El proyecto presenta una **plataforma web educativa** para la materia **Fundamentos del Diseño** (1.er semestre, Licenciatura en Diseño Gráfico), compuesta por tres módulos HTML interconectados y recursos PDF complementarios, que integran inteligencia artificial de forma reflexiva y ética como herramienta de validación del pensamiento estudiantil.
 
 ### 🎯 Propósito
 
-Demostrar cómo aplicar el **Filtro Pedagógico para usar IA educativa** en el diseño de una actividad real, protegiendo los procesos cognitivos irrenunciables del estudiante mientras se integra la IA donde realmente aporta valor.
+Demostrar cómo aplicar el **Filtro Pedagógico para usar IA educativa** en el diseño de actividades reales, protegiendo los procesos cognitivos irrenunciables del estudiante mientras se integra la IA donde realmente aporta valor.
 
 ---
 
@@ -23,8 +23,11 @@ El proyecto está publicado en GitHub Pages. Abre el sitio en tu navegador:
 https://arkev.github.io/Secuencia_Didactica_IA/
 ```
 
+Desde la página principal puedes navegar a los demás módulos:
+- [Evaluaciones asistidas por IA](https://arkev.github.io/Secuencia_Didactica_IA/evaluaciones_asistidas_por_IA.html)
+- [Objeto de aprendizaje: Materiales visuales con IA](https://arkev.github.io/Secuencia_Didactica_IA/materiales_visuales_con_IA.html)
+
 ### Opción 2: Localmente
-Descarga el archivo `Proyecto_Integrador_Secuencia_Didactica_IA.html` y ábrelo en tu navegador (Chrome, Firefox, Safari, Edge).
 
 ```bash
 # Clonar el repositorio
@@ -33,14 +36,14 @@ git clone https://github.com/arkev/Secuencia_Didactica_IA.git
 # Navegar a la carpeta
 cd Secuencia_Didactica_IA
 
-# Abrir en navegador (macOS)
-open Proyecto_Integrador_Secuencia_Didactica_IA.html
+# Abrir la página principal en navegador (macOS)
+open index.html
 
 # Abrir en navegador (Windows)
-start Proyecto_Integrador_Secuencia_Didactica_IA.html
+start index.html
 
 # Abrir en navegador (Linux)
-xdg-open Proyecto_Integrador_Secuencia_Didactica_IA.html
+xdg-open index.html
 ```
 
 ---
@@ -49,67 +52,90 @@ xdg-open Proyecto_Integrador_Secuencia_Didactica_IA.html
 
 ```
 .
-├── README.md                                          # Este archivo
-├── index.html  # Entregable principal
-├── evaluaciones_asistidas_por_IA.html               # Evaluaciones asistidas por IA
+├── README.md                                # Este archivo
+├── index.html                               # Entregable principal: Secuencia Didáctica con IA
+├── evaluaciones_asistidas_por_IA.html       # Evaluaciones asistidas por IA (actividad + rúbrica + chatbot)
+├── materiales_visuales_con_IA.html          # Objeto de aprendizaje: Materiales visuales con IA
+├── Diseño_Centrado_en_el_Usuario.pdf        # Infografía: Principios del Diseño Centrado en el Usuario
+├── Diseño_Humano_e_IA.pdf                   # Recurso interactivo: Diseño Humano e IA
+├── .gitattributes
 └── .gitignore
 ```
 
 ---
 
-## 🎓 Contenido del entregable
+## 🗂️ Módulos del proyecto
 
-El HTML incluye las siguientes secciones:
+El proyecto está compuesto por **tres páginas HTML** y **dos recursos PDF**, cada uno con un propósito pedagógico específico:
 
-### 1. **Tema y Contexto** 
-- Descripción del curso, carrera y perfil de estudiantes
-- El desafío pedagógico que origina el rediseño
-- Perfil del grupo (pequeño, primer semestre, acceso a IA)
+### 📄 1. Secuencia Didáctica con IA (`index.html`)
 
-### 2. **Objetivos de Aprendizaje**
-- **Objetivo 1:** Comprensión y síntesis visual del diseño centrado en usuario
-- **Objetivo 2:** Aplicación de abstracción conceptual en tres niveles
+**Entregable principal del Proyecto Integrador.** Presenta la secuencia didáctica rediseñada con enfoque de IA reflexiva.
 
-### 3. **Secuencia Didáctica en 3 Fases**
-- **Fase 1:** Lectura y síntesis (sin IA)
-- **Fase 2:** Validación de comprensión (con IA)
-- **Fase 3:** Abstracción visual (sin IA)
-
-### 4. **Mapeo a la Taxonomía de Bloom**
-Acordeón interactivo con los 6 niveles cognitivos:
-- Recordar → Comprender → Aplicar → Analizar → **Evaluar (con IA)** → Crear
-
-Cada nivel declara explícitamente si incluye IA y qué procesos son irrenunciables del estudiante.
-
-### 5. **Filtro Pedagógico Aplicado**
-Las 6 preguntas que guiaron cada decisión de integración de IA:
-1. ¿Qué objetivo de aprendizaje quiero lograr?
-2. ¿Qué debe pensar el estudiante sin IA?
-3. ¿En qué momento la IA aporta valor real?
-4. ¿Qué evidencia mostrará que hubo aprendizaje?
-5. ¿Qué criterios éticos debo considerar?
-6. ¿Cómo acompañaré y retroalimentaré?
-
-### 6. **Recursos Generados con IA**
-- Propuesta de rediseño con filtro pedagógico
-- Guía práctica para estudiantes
-- Cheat sheet para el docente
-- Infografías de apoyo
-
-### 7. **Evaluación Ética**
-Criterio rector: **Transparencia**. Los estudiantes deben declarar explícitamente cómo usaron la IA.
-
-### 8. **Reflexión Final**
-Análisis crítico sobre:
-- Cómo influyó la IA en las decisiones de diseño
-- Aprendizajes más significativos del taller
-- Integración futura consciente de la IA
+**Contenido:**
+- **Tema y Contexto** — Descripción del curso, carrera, perfil de estudiantes y el desafío pedagógico que origina el rediseño
+- **Objetivos de Aprendizaje** — Comprensión/síntesis visual y abstracción conceptual en tres niveles
+- **Actividad Formativa en 3 Fases** — Lectura y síntesis (sin IA) → Validación de comprensión (con IA) → Abstracción visual (sin IA)
+- **Mapeo a la Taxonomía de Bloom** — Acordeón interactivo con los 6 niveles cognitivos, declarando explícitamente si cada nivel incluye IA
+- **Filtro Pedagógico Aplicado** — Las 6 preguntas que guiaron cada decisión de integración de IA
+- **Recursos Generados con IA** — Propuesta de rediseño, guía para estudiantes, cheat sheet docente, infografías
+- **Evaluación Ética** — Criterio rector: Transparencia
+- **Reflexión Final** — Análisis crítico sobre IA, aprendizajes e integración futura
 
 ---
 
-## 🎯 Mapeo a la Rúbrica de Evaluación
+### 📄 2. Evaluaciones Asistidas por IA (`evaluaciones_asistidas_por_IA.html`)
 
-El entregable está diseñado para cumplir con los criterios de evaluación:
+**Actividad significativa con rúbrica detallada y reflexión sobre chatbot de retroalimentación formativa.**
+
+**Contenido:**
+- **Actividad Significativa** — Secuencia didáctica con 3 objetivos (comprensión, abstracción, reflexión) y 3 fases con reglas claras sobre cuándo interviene la IA
+- **Rúbrica de Evaluación** — 8 criterios con ponderación detallada:
+
+  | Criterio | Peso |
+  |----------|------|
+  | Entrega a tiempo | 30% |
+  | Síntesis visual | 15% |
+  | Conclusión personal | 10% |
+  | Lámina realista | 10% |
+  | Lámina figurativa | 10% |
+  | Lámina no figurativa | 10% |
+  | Calidad técnica | 10% |
+  | Ortografía y redacción | 5% |
+  | Reflexión sobre uso de IA | +5% bonus |
+
+- **Reflexión sobre el Chatbot** — Análisis del diseño de un chatbot para retroalimentación formativa: papel delimitado de la IA, principios éticos integrados, y la IA como amplificadora de la práctica docente
+- **Autoevaluación** — Reflexión sobre beneficios (base de retroalimentación alineada a objetivos), riesgos (delegar completamente la evaluación) y la evaluación como comprensión de procesos
+
+---
+
+### 📄 3. Objeto de Aprendizaje: Materiales Visuales con IA (`materiales_visuales_con_IA.html`)
+
+**Recurso autocontenido de 20–30 minutos sobre el diseño de materiales visuales educativos con inteligencia artificial.**
+
+**Contenido:**
+- **Introducción** — Contextualización sobre la transformación del diseño visual con IA generativa y la distinción entre rapidez y calidad pedagógica
+- **Recorrido de Aprendizaje** — Secuencia de 3 recursos en orden pedagógico:
+  1. 🟢 **Inicio · Infografía** — *Diseño Centrado en el Usuario* (PDF) — Contextualiza el tema y activa conocimientos previos
+  2. 🟣 **Desarrollo · Recurso interactivo** — *Diseño Humano e IA* (PDF) — Profundiza en la relación entre diseño humano e inteligencia artificial
+  3. 🟣 **Desarrollo · Video** — Generado con NotebookLM — Refuerzo audiovisual de la actividad
+- **Verificación de Comprensión** — Quiz interactivo de 5 preguntas con retroalimentación inmediata y puntuación
+- **Reflexión Metacognitiva** — Análisis sobre criterios pedagógicos para selección de herramientas de IA, barra de progreso y animaciones reveal
+
+---
+
+### 📎 4. Recursos PDF complementarios
+
+| Archivo | Descripción | Usado en |
+|---------|-------------|----------|
+| `Diseño_Centrado_en_el_Usuario.pdf` | Infografía sobre principios fundamentales del DCU | Materiales Visuales (Recurso 1 · Inicio) |
+| `Diseño_Humano_e_IA.pdf` | Recurso interactivo sobre la relación entre diseño humano e IA | Materiales Visuales (Recurso 2 · Desarrollo) |
+
+---
+
+## 🎯 Mapeo a la Rúbrica del Taller
+
+El entregable principal está diseñado para cumplir con los criterios de evaluación del taller:
 
 | Criterio | Porcentaje | Ubicación en el documento |
 |----------|-----------|---------------------------|
@@ -125,30 +151,38 @@ El entregable está diseñado para cumplir con los criterios de evaluación:
 
 ### Estética Editorial
 - **Tipografía:** Fraunces (serif, para títulos) + Archivo (sans-serif, para cuerpo)
-- **Paleta de colores:** Monocromía en púrpura con acentos (coral, teal, oro)
+- **Paleta de colores:** Monocromía en púrpura (`#5b4ad4`) con acentos coral (`#d8542f`), teal (`#0f6e56`) y oro (`#ba7517`)
+- **Fondo:** Textura de puntos (`radial-gradient`) sobre papel cálido (`#f4f1ea`)
 - **Espaciado:** Amplitud y respiro visual, apropiado para documento académico
 - **Animaciones:** Reveal on scroll (suave, accesible, sin distracciones)
 
 ### Interactividad
-- **Acordeón Bloom:** Cada nivel se despliega al hacer clic, permitiendo lectura progresiva
-- **Responsive design:** Se adapta a dispositivos móviles y pantallas grandes
-- **Accesibilidad:** Contraste adecuado, tipografía legible, estructura semántica
+- **Acordeón Bloom** (index.html) — Cada nivel cognitivo se despliega al hacer clic
+- **Fases con badges** (evaluaciones) — Indicadores visuales "Sin IA" / "Con IA"
+- **Quiz interactivo** (materiales visuales) — 5 preguntas con retroalimentación inmediata, puntuación y opción de reintento
+- **Barra de progreso** (materiales visuales) — Indicador visual del avance de lectura
+- **Responsive design** — Todas las páginas se adaptan a móviles y pantallas grandes
+- **Accesibilidad** — Contraste adecuado, tipografía legible, estructura semántica
 
 ### Contenido Visual
-- Tarjetas con información jerarquizada
-- Callouts para información ética crítica
-- Pullquote que sintetiza el concepto central
-- Tablas comparativas claras
+- Tarjetas con información jerarquizada y bordes de color por categoría
+- Callouts con gradiente púrpura para información clave
+- Pullquotes que sintetizan conceptos centrales
+- Timeline vertical con dots de color para el recorrido de recursos
+- Chips informativos para perfil de estudiantes
+- Rúbricas con porcentajes destacados tipográficamente
 
 ---
 
 ## 🔧 Tecnología
 
 - **HTML5** semántico
-- **CSS3** con variables de color y animaciones
-- **JavaScript vanilla** para interactividad (sin dependencias)
+- **CSS3** con custom properties (variables de color) y animaciones
+- **JavaScript vanilla** para interactividad (sin dependencias externas)
 - **Google Fonts** para tipografía (Fraunces + Archivo)
 - **Diseño responsive** con media queries
+- **IntersectionObserver API** para animaciones reveal on scroll
+- **Backdrop filter** para navbar con efecto glassmorphism
 
 **Navegadores soportados:**
 - Chrome/Chromium 90+
@@ -177,17 +211,20 @@ Este proyecto es parte del **Taller: Cómo diseñar clases efectivas con IA educ
 ### Para instructores
 1. Revisa la estructura de la secuencia didáctica como modelo replicable
 2. Adapta el filtro pedagógico a tus propias actividades
-3. Usa los recursos complementarios en Word como punto de partida para tus propias clases
+3. Usa la rúbrica detallada de `evaluaciones_asistidas_por_IA.html` como referencia para diseñar tus propias evaluaciones
+4. Explora el objeto de aprendizaje como ejemplo de recurso autocontenido con verificación integrada
 
 ### Para estudiantes de diseño
 1. Entiende cómo se estructura una actividad de aprendizaje profundo
 2. Aprende qué significa "usar IA como validadora" vs "dejar que la IA haga el trabajo"
-3. Ve el modelo que el docente espera que repliques en futuras actividades
+3. Recorre el objeto de aprendizaje sobre materiales visuales con IA
+4. Completa el quiz de verificación para comprobar tu comprensión
 
 ### Para investigadores
 1. Usa como caso de estudio cómo integrar IA en educación superior de forma ética
 2. Referencia el filtro pedagógico en trabajos sobre diseño instructivo
-3. Contribuye con mejoras o adaptaciones
+3. Analiza el diseño del chatbot de retroalimentación formativa como ejemplo de IA delimitada
+4. Contribuye con mejoras o adaptaciones
 
 ---
 
@@ -244,22 +281,29 @@ Universidad de Montemorelos
 - Facilitadores del taller "Cómo diseñar clases efectivas con IA educativa"
 - Estudiantes de Fundamentos del Diseño, por ser el contexto real de esta propuesta
 - David Travis, por "La Fábula del Diseñador Centrado en el Usuario"
+- Google NotebookLM, por la generación del recurso audiovisual
 
 ---
 
 ## 📅 Historial
 
-- **Mayo 2026:** Entrega final del Proyecto Integrador
+- **Junio 2026:** Agregado Objeto de Aprendizaje sobre materiales visuales con IA, recursos PDF complementarios (infografía DCU + recurso interactivo Diseño Humano e IA), y quiz de verificación interactivo
+- **Mayo 2026:** Entrega final del Proyecto Integrador (secuencia didáctica + evaluaciones asistidas por IA)
 - **Etapa anterior:** Diseño, ajuste de coherencia pedagógica y evaluación ética
 - **Próximo paso:** Implementación en clase con el grupo de primer semestre
 
 ---
 
 ### 🌐 Ver el proyecto en GitHub Pages
-👉 [Ver entregable en vivo](https://arkev.github.io/Secuencia_Didactica_IA/)
 
-**Última actualización:** Mayo 2026
+| Página | Enlace |
+|--------|--------|
+| 🏠 Entregable principal | [Ver secuencia didáctica](https://arkev.github.io/Secuencia_Didactica_IA/) |
+| 📝 Evaluaciones con IA | [Ver evaluaciones](https://arkev.github.io/Secuencia_Didactica_IA/evaluaciones_asistidas_por_IA.html) |
+| 🎨 Materiales visuales con IA | [Ver objeto de aprendizaje](https://arkev.github.io/Secuencia_Didactica_IA/materiales_visuales_con_IA.html) |
+
+**Última actualización:** Junio 2026
 
 ---
 
-*Este README fue generado como parte del entregable final del Proyecto Integrador. Para más información, consulta el HTML principal.*
+*Este README fue generado como parte del entregable final del Proyecto Integrador. Para más información, consulta las páginas HTML del proyecto.*
